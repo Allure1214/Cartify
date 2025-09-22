@@ -4,6 +4,13 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Cartify</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/logo.png">
+    <link rel="apple-touch-icon" href="~/logo.png">
+    
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Cartify.Platform.styles.css" asp-append-version="true" />
@@ -14,6 +21,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
         
         .auth-card {
@@ -21,19 +29,21 @@
             border-radius: 15px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            max-width: 400px;
+            max-width: 450px;
             width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .auth-header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 2rem;
+            padding: 1.5rem;
             text-align: center;
         }
         
         .auth-body {
-            padding: 2rem;
+            padding: 1.5rem;
         }
         
         .form-control:focus {
@@ -80,11 +90,23 @@
             color: white;
             text-decoration: none;
             font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .back-to-home:hover {
-            color: #f8f9fa;
+            color: white;
             text-decoration: none;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
     </style>
 </head>
@@ -96,6 +118,7 @@
     <div class="auth-container">
         <div class="auth-card">
             <div class="auth-header">
+                <img src="~/logo.png" alt="Cartify" height="50" class="mb-2">
                 <h2>@ViewData["Title"]</h2>
                 <p class="mb-0">Welcome to Cartify</p>
             </div>
