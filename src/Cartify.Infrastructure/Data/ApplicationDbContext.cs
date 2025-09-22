@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Cartify.Domain.Entities;
 
 namespace Cartify.Infrastructure.Data;
 
-public class ApplicationDbContext : DbContext
+public class ApplicationDbContext : IdentityDbContext<User, Role, Guid>
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
     {
@@ -12,12 +13,10 @@ public class ApplicationDbContext : DbContext
     // Platform-level entities
     public DbSet<Tenant> Tenants { get; set; }
     public DbSet<SubscriptionPlan> SubscriptionPlans { get; set; }
-    public DbSet<Role> Roles { get; set; }
     public DbSet<RolePermission> RolePermissions { get; set; }
 
     // Tenant-specific entities
     public DbSet<Store> Stores { get; set; }
-    public DbSet<User> Users { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductImage> ProductImages { get; set; }
@@ -205,11 +204,7 @@ public class ApplicationDbContext : DbContext
             .HasForeignKey(u => u.TenantId)
             .OnDelete(DeleteBehavior.SetNull);
 
-        modelBuilder.Entity<User>()
-            .HasOne(u => u.Role)
-            .WithMany(r => r.Users)
-            .HasForeignKey(u => u.RoleId)
-            .OnDelete(DeleteBehavior.Restrict);
+        // User roles are handled by Identity framework automatically
 
         // Customer relationships
         modelBuilder.Entity<Customer>()

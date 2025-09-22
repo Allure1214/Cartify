@@ -1,0 +1,57 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "_AuthLayout";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+            
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" placeholder="Enter your email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" placeholder="Enter your password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            
+            <div class="mb-3 form-check">
+                <input asp-for="RememberMe" class="form-check-input" />
+                <label asp-for="RememberMe" class="form-check-label">
+                    Remember me
+                </label>
+            </div>
+            
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </button>
+            </div>
+            
+            <input asp-for="ReturnUrl" type="hidden" />
+        </form>
+        
+        <div class="auth-links">
+            <p class="mb-2">Don't have an account?</p>
+            <a asp-action="Register" asp-route-returnUrl="@Model.ReturnUrl">
+                <i class="fas fa-user-plus me-1"></i>Create Account
+            </a>
+        </div>
+        
+        <div class="auth-links mt-3">
+            <a href="#" class="text-muted">
+                <i class="fas fa-key me-1"></i>Forgot Password?
+            </a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

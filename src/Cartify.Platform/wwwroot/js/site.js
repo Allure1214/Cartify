@@ -69,7 +69,8 @@ function initializeFormValidation() {
 
 // Contact form handling
 function initializeContactForm() {
-    const contactForm = document.querySelector('form');
+    // Only target the contact form specifically, not all forms
+    const contactForm = document.querySelector('#contact form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();

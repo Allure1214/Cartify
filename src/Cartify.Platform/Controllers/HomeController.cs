@@ -18,8 +18,9 @@ public class HomeController : Controller
         
         if (tenantIdentifier != null)
         {
-            // Redirect to tenant storefront
-            return RedirectToAction("Index", "Store", new { area = "Storefront" });
+            // TODO: Redirect to tenant storefront when Storefront area is implemented
+            // For now, show platform landing page with tenant info
+            ViewBag.TenantIdentifier = tenantIdentifier;
         }
 
         // Show platform landing page
